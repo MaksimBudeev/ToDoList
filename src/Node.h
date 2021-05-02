@@ -11,6 +11,7 @@ private:
 	string text;
 	int priority;  //Приоритет задачи от 1 до 5
 public:
+	Node(string key, string text, int priority);
 	void SetKey(string new_key);
 	void SetText(string new_text);
 	void SetPriority(int new_priority);

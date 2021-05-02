@@ -1,5 +1,11 @@
 #include "Node.h"
 
+Node::Node(string new_key, string new_text, int new_priority){
+	key = new_key;
+	text = new_text;
+	priority = new_priority;
+}
+
 void Node::SetKey(string new_key){
 	key = new_key;
 }
