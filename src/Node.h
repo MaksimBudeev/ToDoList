@@ -27,14 +27,14 @@ public:
     int GetPriority();
 };
 
-void DeleteTask(vector<Node>& vector, string date, string text, int priority);
+void DeleteTask(vector<Node>& vector, string date, int priority, string text);
 // добавление заметки:
-void SetTaskForDate(vector<Node>& node_vector, string new_date, string new_text, int new_priority);
+void SetTaskForDate(vector<Node>& node_vector, string new_date, int new_priority, string new_text);
 // вывод заметок на данную дату в консоль(временно):
 void GetTaskForDate(vector<Node> node_vector, string date);
 // изменение даты:
-void ChangeTaskDate(vector<Node>& node_vector, string date, string text, int priority, string new_date);
+void ChangeTaskDate(vector<Node>& node_vector, string date, int priority, string text, string new_date);
 // изменение текста заметки:
-void ChangeTaskText(vector<Node>& node_vector, string date, string text, int priority, string new_text);
+void ChangeTaskText(vector<Node>& node_vector, string date, int priority, string text, string new_text);
 // изменение приоритета заметки:
-void ChangeTaskPriority(vector<Node>& node_vector, string date, string text, int priority, int new_priority);
+void ChangeTaskPriority(vector<Node>& node_vector, string date, int priority, string text, int new_priority);
