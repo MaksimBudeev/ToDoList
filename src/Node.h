@@ -13,12 +13,13 @@ private:
 public:
     // Конструктор:
     Node(string date, string text, int priority);
+    Node();
     // Установить дату:
-    void SetDate(string new_date);
+    void SetDate(string newDate);
     // Установить текст:
-    void SetText(string new_text);
+    void SetText(string newText);
     // Установить приоритет:
-    void SetPriority(int new_priority);
+    void SetPriority(int newPriority);
     // Вернуть значение даты:
     string GetDate();
     // Вернуть значение текста:
@@ -27,14 +28,14 @@ public:
     int GetPriority();
 };
 
-void DeleteTask(vector<Node>& vector, string date, string text, int priority);
+void DeleteTask(vector<Node>& vector, string date, int priority, string text);
 // добавление заметки:
-void SetTaskForDate(vector<Node>& node_vector, string new_date, string new_text, int new_priority);
+void SetTaskForDate(vector<Node>& nodeVector, string newDate, int newPriority, string newText);
 // вывод заметок на данную дату в консоль(временно):
-void GetTaskForDate(vector<Node> node_vector, string date);
+void GetTaskForDate(vector<Node> nodeVector, string date);
 // изменение даты:
-void ChangeTaskDate(vector<Node>& node_vector, string date, string text, int priority, string new_date);
+void ChangeTaskDate(vector<Node>& nodeVector, string date, int priority, string text, string newDate);
 // изменение текста заметки:
-void ChangeTaskText(vector<Node>& node_vector, string date, string text, int priority, string new_text);
+void ChangeTaskText(vector<Node>& nodeVector, string date, int priority, string text, string newText);
 // изменение приоритета заметки:
-void ChangeTaskPriority(vector<Node>& node_vector, string date, string text, int priority, int new_priority);
+void ChangeTaskPriority(vector<Node>& nodeVector, string date, int priority, string text, int newPriority);
