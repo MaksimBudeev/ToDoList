@@ -14,6 +14,22 @@ Node::Node()
 	priority = 0;
 }
 
+bool Node::operator == (const Node &b){
+	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+bool Node::operator != (const Node &b){
+	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
+		return false;
+	}else{
+		return true;
+	}
+}	
+
 void SetTaskForDate(vector<Node>& nodeVector, string newDate, int newPriority, string newText)
 {
     Node node(newDate, newText, newPriority);

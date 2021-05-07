@@ -26,6 +26,7 @@ public:
     string GetText();
     // Вернуть значение приоритета:
     int GetPriority();
+    bool operator == (const Node & b);
 };
 
 void DeleteTask(vector<Node>& vector, string date, int priority, string text);
