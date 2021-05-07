@@ -1,34 +1,34 @@
 #include "Node.h"
 
-Node::Node(string new_date, string new_text, int new_priority)
+Node::Node(string newDate, string newText, int newPriority)
 {
-    date = new_date;
-    text = new_text;
-    priority = new_priority;
+    date = newDate;
+    text = newText;
+    priority = newPriority;
 }
 
-void SetTaskForDate(vector<Node>& node_vector, string new_date, int new_priority, string new_text)
+void SetTaskForDate(vector<Node>& nodeVector, string newDate, int newPriority, string newText)
 {
-    Node node(new_date, new_text, new_priority);
-    node_vector.push_back(node);
+    Node node(newDate, newText, newPriority);
+    nodeVector.push_back(node);
 }
 
-void GetTaskForDate(vector<Node> node_vector, string date)
+void GetTaskForDate(vector<Node> nodeVector, string date)
 {
-    vector<Node> help_vector;
-    for (int i = 0; i < node_vector.size(); i++) {
-        if (node_vector[i].GetDate() == date) {
-            help_vector.push_back(node_vector[i]);
+    vector<Node> helpVector;
+    for (int i = 0; i < nodeVector.size(); i++) {
+        if (nodeVector[i].GetDate() == date) {
+            helpVector.push_back(nodeVector[i]);
         }
     }
     for (int i = 5; i >= 0; i--) {
-        for (int j = 0; j < help_vector.size(); j++) {
-            if (help_vector[j].GetPriority() == i) {
-                cout << help_vector[j].GetDate() << " " << help_vector[j].GetPriority() << " " << help_vector[j].GetText() << endl;
+        for (int j = 0; j < helpVector.size(); j++) {
+            if (helpVector[j].GetPriority() == i) {
+                cout << helpVector[j].GetDate() << " " << helpVector[j].GetPriority() << " " << helpVector[j].GetText() << endl;
             }
         }
     }
-    help_vector.clear();
+    helpVector.clear();
 }
 
 void DeleteTask(vector<Node>& vector, string date, int priority, string text)
@@ -41,17 +41,17 @@ void DeleteTask(vector<Node>& vector, string date, int priority, string text)
     }
 }
 
-void Node::SetDate(string new_date)
+void Node::SetDate(string newDate)
 {
-    date = new_date;
+    date = newDate;
 }
-void Node::SetText(string new_text)
+void Node::SetText(string newText)
 {
-    text = new_text;
+    text = newText;
 }
-void Node::SetPriority(int new_priority)
+void Node::SetPriority(int newPriority)
 {
-    priority = new_priority;
+    priority = newPriority;
 }
 
 string Node::GetDate()
@@ -67,31 +67,31 @@ int Node::GetPriority()
     return priority;
 }
 
-void ChangeTaskDate(vector<Node>& node_vector, string date, int priority, string text, string new_date)
+void ChangeTaskDate(vector<Node>& nodeVector, string date, int priority, string text, string newDate)
 {
-    for (int i = 0; i < node_vector.size(); i++) {
-        if ((node_vector[i].GetDate() == date) && (node_vector[i].GetText() == text) && (node_vector[i].GetPriority() == priority)) {
-            node_vector[i].SetDate(new_date);
+    for (int i = 0; i < nodeVector.size(); i++) {
+        if ((nodeVector[i].GetDate() == date) && (nodeVector[i].GetText() == text) && (nodeVector[i].GetPriority() == priority)) {
+            nodeVector[i].SetDate(newDate);
             break;
         }
     }
 }
 
-void ChangeTaskText(vector<Node>& node_vector, string date, int priority, string text, string new_text)
+void ChangeTaskText(vector<Node>& nodeVector, string date, int priority, string text, string newText)
 {
-    for (int i = 0; i < node_vector.size(); i++) {
-        if ((node_vector[i].GetDate() == date) && (node_vector[i].GetText() == text) && (node_vector[i].GetPriority() == priority)) {
-            node_vector[i].SetText(new_text);
+    for (int i = 0; i < nodeVector.size(); i++) {
+        if ((nodeVector[i].GetDate() == date) && (nodeVector[i].GetText() == text) && (nodeVector[i].GetPriority() == priority)) {
+            nodeVector[i].SetText(newText);
             break;
         }
     }
 }
 
-void ChangeTaskPriority(vector<Node>& node_vector, string date, int priority, string text, int new_priority)
+void ChangeTaskPriority(vector<Node>& nodeVector, string date, int priority, string text, int newPriority)
 {
-    for (int i = 0; i < node_vector.size(); i++) {
-        if ((node_vector[i].GetDate() == date) && (node_vector[i].GetText() == text) && (node_vector[i].GetPriority() == priority)) {
-            node_vector[i].SetPriority(new_priority);
+    for (int i = 0; i < nodeVector.size(); i++) {
+        if ((nodeVector[i].GetDate() == date) && (nodeVector[i].GetText() == text) && (nodeVector[i].GetPriority() == priority)) {
+            nodeVector[i].SetPriority(newPriority);
             break;
         }
     }
