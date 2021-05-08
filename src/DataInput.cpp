@@ -1,17 +1,14 @@
 #include "DataInput.h"
 #include "Node.h"
 
-string date;
-string prior;
-string text;
-int priority;
-int command;
-int ch = 0; //чтение символов
-int i = 0;  //счёт символов
-int TypeString = -1;
-
 void UpdateTask(vector<Node>& node_vector)
 {
+    int ch = 0; //чтение символов
+    int i = 0;  //счёт символов
+    string date;
+    string prior;
+    string text;
+    int priority;
     ifstream Task("task.txt", ios::in);  //открыли для чтения  файл
     if (!Task.is_open()) {               // если файл не открыт
         cout << "Файл не был найден!\n"; // сообщить об этом
@@ -52,14 +49,17 @@ void SetTaskInFile(vector<Node>& node_vector, string date, int priority, string 
     Task << date << " " << priority << " " << text << endl;
     SetTaskForDate(node_vector, date, priority, text);
     cout << "Заметка добавлена" << endl;
-    date.clear();
-    prior.clear();
-    text.clear();
     Task.close();
 }
 
 void ChangeStringInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, string new_string, int TypeString)
 {
+    int ch = 0; //чтение символов
+    int i = 0;  //счёт символов
+    string date;
+    string prior;
+    string text;
+    int priority;
     fstream Temp;
     fstream Task;
 
@@ -155,22 +155,22 @@ void ChangeStringInFile(vector<Node>& node_vector, string date_p, int priority_p
 
 void ChangeDateInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, string newDate)
 {
-    TypeString = 0;
+    int TypeString = 0;
     ChangeStringInFile(node_vector, date_p, priority_p, text_p, newDate, TypeString);
 }
 void ChangeTextInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, string newText)
 {
-    TypeString = 1;
+    int TypeString = 1;
     ChangeStringInFile(node_vector, date_p, priority_p, text_p, newText, TypeString);
 }
 void ChangePriorityInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, int newPriority)
 {
-    TypeString = 2;
+    int TypeString = 2;
     string prior = to_string(newPriority); //преобразование в стринг
     ChangeStringInFile(node_vector, date_p, priority_p, text_p, prior, TypeString);
 }
 void DeleteTaskInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p)
 {
-    TypeString = 3;
+    int TypeString = 3;
     ChangeStringInFile(node_vector, date_p, priority_p, text_p, "", TypeString);
 }
