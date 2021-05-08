@@ -77,15 +77,15 @@ void Node::SetPriority(int newPriority)
     priority = newPriority;
 }
 
-string Node::GetDate()
+string Node::GetDate()const
 {
     return date;
 }
-string Node::GetText()
+string Node::GetText()const
 {
     return text;
 }
-int Node::GetPriority()
+int Node::GetPriority()const
 {
     return priority;
 }

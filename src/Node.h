@@ -21,12 +21,13 @@ public:
     // Установить приоритет:
     void SetPriority(int newPriority);
     // Вернуть значение даты:
-    string GetDate();
+    string GetDate()const;
     // Вернуть значение текста:
-    string GetText();
+    string GetText()const;
     // Вернуть значение приоритета:
-    int GetPriority();
+    int GetPriority()const;
     bool operator == (const Node & b);
+    bool operator != (const Node & b);
 };
 
 void DeleteTask(vector<Node>& vector, string date, int priority, string text);
