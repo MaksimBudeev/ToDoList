@@ -3,3 +3,7 @@
 *.save
 *.a
 *.d
+
+
+bin/*
+!.keep

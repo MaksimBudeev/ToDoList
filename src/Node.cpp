@@ -9,26 +9,28 @@ Node::Node(string newDate, string newText, int newPriority)
 
 Node::Node()
 {
-	date = "";
-	text = "";
-	priority = 0;
+    date = "";
+    text = "";
+    priority = 0;
 }
 
-bool Node::operator == (const Node &b){
-	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
-		return true;
-	}else{
-		return false;
-	}
+bool Node::operator==(const Node& b)
+{
+    if (this->date == b.date && this->text == b.text && this->priority == b.priority) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-bool Node::operator != (const Node &b){
-	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
-		return false;
-	}else{
-		return true;
-	}
-}	
+bool Node::operator!=(const Node& b)
+{
+    if (this->date == b.date && this->text == b.text && this->priority == b.priority) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 void SetTaskForDate(vector<Node>& nodeVector, string newDate, int newPriority, string newText)
 {
@@ -77,15 +79,15 @@ void Node::SetPriority(int newPriority)
     priority = newPriority;
 }
 
-string Node::GetDate()const
+string Node::GetDate() const
 {
     return date;
 }
-string Node::GetText()const
+string Node::GetText() const
 {
     return text;
 }
-int Node::GetPriority()const
+int Node::GetPriority() const
 {
     return priority;
 }
@@ -119,5 +121,3 @@ void ChangeTaskPriority(vector<Node>& nodeVector, string date, int priority, str
         }
     }
 }
-
-
