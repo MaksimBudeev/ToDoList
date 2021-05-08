@@ -7,6 +7,29 @@ Node::Node(string newDate, string newText, int newPriority)
     priority = newPriority;
 }
 
+Node::Node()
+{
+	date = "";
+	text = "";
+	priority = 0;
+}
+
+bool Node::operator == (const Node &b){
+	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+bool Node::operator != (const Node &b){
+	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
+		return false;
+	}else{
+		return true;
+	}
+}	
+
 void SetTaskForDate(vector<Node>& nodeVector, string newDate, int newPriority, string newText)
 {
     Node node(newDate, newText, newPriority);
@@ -54,15 +77,15 @@ void Node::SetPriority(int newPriority)
     priority = newPriority;
 }
 
-string Node::GetDate()
+string Node::GetDate()const
 {
     return date;
 }
-string Node::GetText()
+string Node::GetText()const
 {
     return text;
 }
-int Node::GetPriority()
+int Node::GetPriority()const
 {
     return priority;
 }
@@ -96,4 +119,5 @@ void ChangeTaskPriority(vector<Node>& nodeVector, string date, int priority, str
         }
     }
 }
+
 
