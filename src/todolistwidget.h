@@ -11,6 +11,9 @@ class ToDoListWidget: public QWidget
 public:
     ToDoListWidget(QWidget *parent = nullptr);
 
+public slots:
+    void createTask();
+
 private:
     QListWidget* tasksListWidget;
 };

@@ -2,6 +2,7 @@
 
 #include <QVBoxLayout>
 #include <QListWidget>
+#include <QDebug>
 
 ToDoListWidget::ToDoListWidget(QWidget *parent)
     : QWidget(parent)
@@ -10,4 +11,9 @@ ToDoListWidget::ToDoListWidget(QWidget *parent)
     tasksListWidget = new QListWidget(this);
 
     vBox->addWidget(tasksListWidget);
+}
+
+void ToDoListWidget::createTask()
+{
+    qDebug() << "Create task";
 }

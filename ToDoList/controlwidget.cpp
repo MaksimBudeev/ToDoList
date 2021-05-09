@@ -20,4 +20,5 @@ ControlWidget::ControlWidget(QWidget *parent)
 
     setLayout(vbox);
 
+    connect(newTask, SIGNAL(clicked()), this, SIGNAL(createTaskRequested()));
 }

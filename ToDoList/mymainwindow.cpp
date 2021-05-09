@@ -18,6 +18,8 @@ MyMainWindow::MyMainWindow(QWidget *parent)
     mainLayout->addWidget(taskList, 5);
     mainLayout->addWidget(setPriority);
 
+    connect(controlWidget, SIGNAL(createTaskRequested()), taskList, SLOT(createTask()));
+
     setLayout(mainLayout);
 }
 

@@ -10,5 +10,6 @@ public:
     ControlWidget(QWidget* parent = nullptr);
 
 signals:
+    void createTaskRequested();
 
 };
