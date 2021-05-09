@@ -26,4 +26,3 @@ MyMainWindow::MyMainWindow(QWidget *parent)
 
     setLayout(mainLayout);
 }
-

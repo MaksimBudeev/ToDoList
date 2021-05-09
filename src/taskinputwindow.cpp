@@ -52,3 +52,10 @@ void TaskInputDialog::sendTaskData()
 
     close();
 }
+
+void TaskInputDialog::setTaskData(const Node& taskInfo)
+{
+   taskLineEdit->setText(QString::fromStdString(taskInfo.GetText()));
+   dateLineEdit->setText(QString::fromStdString(taskInfo.GetDate()));
+   priorityComboBox->setCurrentText(QString::number(taskInfo.GetPriority()));
+}

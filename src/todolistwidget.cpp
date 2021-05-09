@@ -33,7 +33,34 @@ void ToDoListWidget::createTask()
 
 void ToDoListWidget::editTask()
 {
+    if (!tasksListWidget->currentItem())
+    {
+        return;
+    }
+
+    inputDialog = new TaskInputDialog(this);
+    connect(inputDialog, SIGNAL(taskInfoSended(const Node&)), this, SLOT(editingTask(const Node&)));
+
+    QString taskText = tasksListWidget->currentItem()->data(TaskText).toString();
+    QString taskDate = tasksListWidget->currentItem()->data(TaskDate).toString();
+    int taskPriority = tasksListWidget->currentItem()->data(TaskPriority).toInt();
+    Node editableTask(taskDate.toStdString(), taskText.toStdString(), taskPriority);
+    inputDialog->setTaskData(editableTask);
     qDebug() << "Edit task";
+    inputDialog->open();
+}
+
+void ToDoListWidget::editingTask(const Node& node)
+{
+    QString taskText = QString::fromStdString(node.GetText());
+    QString dateText = QString::fromStdString(node.GetDate());
+    int priority = node.GetPriority();
+    auto taskItem = tasksListWidget->currentItem();
+    taskItem->setData(TaskText, taskText);
+    taskItem->setData(TaskDate, dateText);
+    taskItem->setData(TaskPriority, priority);
+    tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
+    tasksListWidget->setItemWidget(taskItem, new ListItemWidget(taskText, dateText, tasksListWidget));
 }
 
 void ToDoListWidget::compliteTask()

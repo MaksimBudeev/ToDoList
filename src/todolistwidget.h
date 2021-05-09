@@ -22,6 +22,7 @@ public slots:
 
 private slots:
     void addedTask(const Node&);
+    void editingTask(const Node&);
 
 private:
     QListWidget* tasksListWidget;
