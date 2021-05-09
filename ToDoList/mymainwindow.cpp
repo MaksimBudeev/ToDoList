@@ -22,6 +22,8 @@ MyMainWindow::MyMainWindow(QWidget *parent)
     connect(controlWidget, SIGNAL(editTaskRequested()), taskList, SLOT(editTask()));
     connect(controlWidget, SIGNAL(compliteTaskRequested()), taskList, SLOT(compliteTask()));
     connect(controlWidget, SIGNAL(deleteTaskRequested()), taskList, SLOT(deleteTask()));
+    connect(setPriority, SIGNAL(priorityChangeRequested(int)), taskList, SLOT(setTaskPriority(int)));
+
     setLayout(mainLayout);
 }
 

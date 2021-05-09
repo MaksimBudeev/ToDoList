@@ -32,3 +32,8 @@ void ToDoListWidget::deleteTask()
 {
     qDebug() << "Delete task";
 }
+
+void ToDoListWidget::setTaskPriority(int priority)
+{
+    qDebug() << "Set priority:" << priority;
+}

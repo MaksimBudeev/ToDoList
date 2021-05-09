@@ -17,6 +17,15 @@ PrioritySetWidget::PrioritySetWidget(QWidget* parent)
     for (int i = 0; i < countButton; i++)
     {
         QPushButton* priorityButton = new QPushButton(QString::number(i+1), this);
+        priorityMap.insert(priorityButton, i+1);
+        connect(priorityButton, SIGNAL(clicked()), this, SLOT(sendPriority()));
         vBox->addWidget(priorityButton);
     }
+}
+
+void PrioritySetWidget::sendPriority()
+{
+    QPushButton* sendButton = qobject_cast<QPushButton*>(sender());
+
+    emit priorityChangeRequested(priorityMap.value(sendButton, 1));
 }

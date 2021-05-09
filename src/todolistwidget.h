@@ -16,6 +16,7 @@ public slots:
     void editTask();
     void deleteTask();
     void compliteTask();
+    void setTaskPriority(int);
 
 private:
     QListWidget* tasksListWidget;
