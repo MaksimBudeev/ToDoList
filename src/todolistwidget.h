@@ -5,6 +5,7 @@
 
 class QListWidget;
 class TaskInputDialog;
+class Node;
 
 class ToDoListWidget: public QWidget
 {
@@ -18,6 +19,9 @@ public slots:
     void deleteTask();
     void compliteTask();
     void setTaskPriority(int);
+
+private slots:
+    void addedTask(const Node&);
 
 private:
     QListWidget* tasksListWidget;

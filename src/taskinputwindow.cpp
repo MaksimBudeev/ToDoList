@@ -1,4 +1,5 @@
 #include "taskinputwindow.h"
+#include "Node.h"
 
 #include <QLabel>
 #include <QLineEdit>
@@ -29,5 +30,25 @@ TaskInputDialog::TaskInputDialog(QWidget *parent)
     dialogLayout->addRow("Priority:", priorityComboBox);
     dialogLayout->addRow("", buttonBox);
 
+    connect(buttonBox, SIGNAL(accepted()), this, SIGNAL(accepted()));
+    connect(buttonBox, SIGNAL(rejected()), this, SIGNAL(rejected()));
+
+    connect(this, SIGNAL(accepted()), this, SLOT(sendTaskData()));
+    connect(this, SIGNAL(rejected()), this, SLOT(close()));
+
     setLayout(dialogLayout);
+}
+
+void TaskInputDialog::sendTaskData()
+{
+    QString taskText = taskLineEdit->text();
+    QString taskDate = dateLineEdit->text();
+    QString taskPriority = priorityComboBox->currentText();
+    Node newTask(taskDate.toStdString(), taskText.toStdString(), taskPriority.toInt());
+    emit taskInfoSended(newTask);
+    taskLineEdit->clear();
+    dateLineEdit->clear();
+    priorityComboBox->setCurrentIndex(0);
+
+    close();
 }

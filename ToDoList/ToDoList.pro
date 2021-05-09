@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     ../src/Node.cpp \
+    ../src/listitemwidget.cpp \
     ../src/prioritysetwidget.cpp \
     ../src/taskinputwindow.cpp \
     ../src/todolistwidget.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     ../src/Node.h \
+    ../src/listitemwidget.h \
     ../src/prioritysetwidget.h \
     ../src/taskinputwindow.h \
     ../src/todolistwidget.h \

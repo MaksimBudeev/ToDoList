@@ -5,12 +5,19 @@
 class QComboBox;
 class QLineEdit;
 class QFormLayout;
+class Node;
 
 class TaskInputDialog: public QDialog
 {
     Q_OBJECT
 public:
     TaskInputDialog(QWidget *parent = nullptr);
+
+signals:
+    void taskInfoSended(const Node&);
+
+public slots:
+    void sendTaskData();
 
 private:
     QLineEdit* taskLineEdit = nullptr;
