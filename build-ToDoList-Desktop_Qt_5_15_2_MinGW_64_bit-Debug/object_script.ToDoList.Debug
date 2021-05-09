@@ -1,10 +1,12 @@
 debug/Node.o
 debug/prioritysetwidget.o
+debug/taskinputwindow.o
 debug/todolistwidget.o
 debug/controlwidget.o
 debug/main.o
 debug/mymainwindow.o
 debug/moc_prioritysetwidget.o
+debug/moc_taskinputwindow.o
 debug/moc_todolistwidget.o
 debug/moc_controlwidget.o
 debug/moc_mymainwindow.o

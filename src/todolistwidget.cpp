@@ -1,4 +1,5 @@
 #include "todolistwidget.h"
+#include "taskinputwindow.h"
 
 #include <QVBoxLayout>
 #include <QListWidget>
@@ -15,6 +16,8 @@ ToDoListWidget::ToDoListWidget(QWidget *parent)
 
 void ToDoListWidget::createTask()
 {
+    inputDialog = new TaskInputDialog(this);
+    inputDialog->open();
     qDebug() << "Create task";
 }
 
@@ -25,7 +28,7 @@ void ToDoListWidget::editTask()
 
 void ToDoListWidget::compliteTask()
 {
-        qDebug() << "complite task";
+    qDebug() << "complite task";
 }
 
 void ToDoListWidget::deleteTask()

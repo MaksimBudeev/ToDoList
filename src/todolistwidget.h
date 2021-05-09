@@ -4,6 +4,7 @@
 #include <QVector>
 
 class QListWidget;
+class TaskInputDialog;
 
 class ToDoListWidget: public QWidget
 {
@@ -20,5 +21,6 @@ public slots:
 
 private:
     QListWidget* tasksListWidget;
+    TaskInputDialog* inputDialog;
 };
 
