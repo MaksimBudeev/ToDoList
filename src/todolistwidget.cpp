@@ -43,6 +43,8 @@ void ToDoListWidget::compliteTask()
 
 void ToDoListWidget::deleteTask()
 {
+    tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
+    delete tasksListWidget->takeItem(tasksListWidget->currentRow());
     qDebug() << "Delete task";
 }
 
