@@ -1,0 +1,10 @@
+release/Node.o
+release/prioritysetwidget.o
+release/todolistwidget.o
+release/controlwidget.o
+release/main.o
+release/mymainwindow.o
+release/moc_prioritysetwidget.o
+release/moc_todolistwidget.o
+release/moc_controlwidget.o
+release/moc_mymainwindow.o

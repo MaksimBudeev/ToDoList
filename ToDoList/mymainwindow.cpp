@@ -9,9 +9,11 @@ MyMainWindow::MyMainWindow(QWidget *parent)
     : QWidget(parent)
 {
     ControlWidget * controlWidget = new ControlWidget();
+    ToDoListWidget * taskList = new ToDoListWidget();
 
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(controlWidget);
+    mainLayout->addWidget(taskList, 5);
 
     setLayout(mainLayout);
 }
