@@ -11,5 +11,7 @@ public:
 
 signals:
     void createTaskRequested();
-
+    void deleteTaskRequested();
+    void compliteTaskRequested();
+    void editTaskRequested();
 };

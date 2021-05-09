@@ -17,3 +17,18 @@ void ToDoListWidget::createTask()
 {
     qDebug() << "Create task";
 }
+
+void ToDoListWidget::editTask()
+{
+    qDebug() << "Edit task";
+}
+
+void ToDoListWidget::compliteTask()
+{
+        qDebug() << "complite task";
+}
+
+void ToDoListWidget::deleteTask()
+{
+    qDebug() << "Delete task";
+}

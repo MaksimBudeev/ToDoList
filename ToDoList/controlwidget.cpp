@@ -21,4 +21,7 @@ ControlWidget::ControlWidget(QWidget *parent)
     setLayout(vbox);
 
     connect(newTask, SIGNAL(clicked()), this, SIGNAL(createTaskRequested()));
+    connect(deleteTask, SIGNAL(clicked()), this, SIGNAL(deleteTaskRequested()));
+    connect(compliteTask, SIGNAL(clicked()), this, SIGNAL(compliteTaskRequested()));
+    connect(editTask, SIGNAL(clicked()), this, SIGNAL(editTaskRequested()));
 }
