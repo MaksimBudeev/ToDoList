@@ -9,10 +9,16 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ../src/prioritysetwidget.cpp \
+    ../src/todolistwidget.cpp \
+    controlwidget.cpp \
     main.cpp \
     mymainwindow.cpp
 
 HEADERS += \
+    ../src/prioritysetwidget.h \
+    ../src/todolistwidget.h \
+    controlwidget.h \
     mymainwindow.h
 
 # Default rules for deployment.
