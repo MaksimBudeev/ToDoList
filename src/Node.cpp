@@ -90,33 +90,30 @@ int Node::GetPriority()const
     return priority;
 }
 
-void ChangeTaskDate(vector<Node>& nodeVector, string date, int priority, string text, string newDate)
-{
-    for (int i = 0; i < nodeVector.size(); i++) {
+int FindIndex(vector<Node>& nodeVector, string date, int priority, string text){
+	for (int i = 0; i < nodeVector.size(); i++) {
         if ((nodeVector[i].GetDate() == date) && (nodeVector[i].GetText() == text) && (nodeVector[i].GetPriority() == priority)) {
-            nodeVector[i].SetDate(newDate);
-            break;
+            return i;
         }
     }
+    return 1;
+}
+
+void ChangeTaskDate(vector<Node>& nodeVector, string date, int priority, string text, string newDate)
+{
+	int number = FindIndex(nodeVector,date,priority,text);
+    nodeVector[number].SetDate(newDate);
 }
 
 void ChangeTaskText(vector<Node>& nodeVector, string date, int priority, string text, string newText)
 {
-    for (int i = 0; i < nodeVector.size(); i++) {
-        if ((nodeVector[i].GetDate() == date) && (nodeVector[i].GetText() == text) && (nodeVector[i].GetPriority() == priority)) {
-            nodeVector[i].SetText(newText);
-            break;
-        }
-    }
+    int number = FindIndex(nodeVector,date,priority,text);
+    nodeVector[number].SetText(newText);
 }
 
 void ChangeTaskPriority(vector<Node>& nodeVector, string date, int priority, string text, int newPriority)
 {
-    for (int i = 0; i < nodeVector.size(); i++) {
-        if ((nodeVector[i].GetDate() == date) && (nodeVector[i].GetText() == text) && (nodeVector[i].GetPriority() == priority)) {
-            nodeVector[i].SetPriority(newPriority);
-            break;
-        }
-    }
+    int number = FindIndex(nodeVector,date,priority,text);
+    nodeVector[number].SetPriority(newPriority);
 }
 
