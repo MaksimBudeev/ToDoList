@@ -1,176 +1,139 @@
 #include "DataInput.h"
-#include "Node.h"
+#include "Task.h"
 
-void UpdateTask(vector<Node>& node_vector)
-{
-    int ch = 0; //чтение символов
-    int i = 0;  //счёт символов
-    string date;
-    string prior;
-    string text;
-    int priority;
-    ifstream Task("task.txt", ios::in);  //открыли для чтения  файл
-    if (!Task.is_open()) {               // если файл не открыт
-        cout << "Файл не был найден!\n"; // сообщить об этом
-        return;
-    }
-    while ((ch = Task.get()) != EOF) { //пока файл не кончился
-        if (char(ch) != '\n') {        //пока не конец строки
-            if (i < 10) {              //первые 10 символов добавляются в дату
-                date = date + char(ch);
-                i++;
-            } else {
-                if (i < 13) {
-                    if (char(ch) != ' ') {
-                        prior = prior + char(ch);
-                        priority = stoi(prior); //преобразование в инт
-                    }
-                    i++;
-                } else {
-                    text = text + char(ch); //оставшиеся символы в текст
-                }
-            }
-        } else {
-            SetTaskForDate(node_vector, date, priority, text);
-            i = 0; //обнуляем счётчик символов для новой строки
-            date.clear();
-            prior.clear();
-            text.clear();
-        }
-    }
-    Task.close(); //Закрываем файл
-}
-
-void SetTaskInFile(vector<Node>& node_vector, string date, int priority, string text)
+void SetTaskInFile(vector<Task>& taskVector, string date, int priority, string text)
 {
     fstream Task;
-    Task.open("task.txt", ios::app); // окрываем файл для записи
+    Task.open("task.txt", ios::app);
 
     Task << date << " " << priority << " " << text << endl;
-    SetTaskForDate(node_vector, date, priority, text);
+    SetTaskForDate(taskVector, date, priority, text);
     cout << "Заметка добавлена" << endl;
     Task.close();
 }
 
-void ChangeStringInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, string new_string, int TypeString)
+void ChangeStringInFile(vector<Task>& taskVector, string date_p, 
+int priority_p, string text_p, string new_string, int TypeString)
 {
-    int ch = 0; //чтение символов
-    int i = 0;  //счёт символов
+    int readchar = 0;
+    int charcount = 0;
     string date;
     string prior;
     string text;
     int priority;
-    fstream Temp;
+    fstream Cache;
     fstream Task;
 
-    Task.open("task.txt", ios::in);  //открыли для чтения  файл
-    Temp.open("temp.txt", ios::out); // окрываем файл для записи
+    Task.open("task.txt", ios::in);
+    Cache.open("cache.txt", ios::out);
 
-    if (!Task.is_open()) {               // если файл не открыт
-        cout << "Файл не был найден!\n"; // сообщить об этом
-        return;
-    }
-    if (!Temp.is_open()) {               // если файл не открыт
-        cout << "Файл не был найден!\n"; // сообщить об этом
-        return;
-    }
-
-    while ((ch = Task.get()) != EOF) { //пока файл не кончился
-        if (char(ch) != '\n') {        //пока не конец строки
-            if (i < 10) {              //первые 10 символов добавляются в дату
-                date = date + char(ch);
-                i++;
+    while ((readchar = Task.get()) != EOF) {
+        if (char(readchar) != '\n') {
+            if (charcount < 10) {
+                date = date + char(readchar);
+                charcount++;
             } else {
-                if (i < 13) {
-                    if (char(ch) != ' ') {
-                        prior = prior + char(ch);
-                        priority = stoi(prior); //преобразование в инт
+                if (charcount < 13) {
+                    if (char(readchar) != ' ') {
+                        prior = prior + char(readchar);
+                        priority = stoi(prior);
                     }
-                    i++;
+                    charcount++;
                 } else {
-                    text = text + char(ch); //оставшиеся символы в текст
+                    text = text + char(readchar);
                 }
             }
         } else {
             if ((date == date_p) && (priority == priority_p) && (text == text_p)) {
-                if (TypeString == 0) {
-                    ChangeTaskDate(node_vector, date_p, priority_p, text_p, new_string);
-                    Temp << new_string << " " << priority_p << " " << text_p << endl;
-                }
                 if (TypeString == 1) {
-                    ChangeTaskText(node_vector, date_p, priority_p, text_p, new_string);
-                    Temp << date_p << " " << priority_p << " " << new_string << endl;
+                    ChangeTaskDate(taskVector, date_p, priority_p, text_p, new_string);
+                    Cache << new_string << " " << priority_p << " " << text_p << endl;
                 }
                 if (TypeString == 2) {
-                    int newPriority = stoi(new_string); //преобразование в инт
-                    ChangeTaskPriority(node_vector, date_p, priority_p, text_p, newPriority);
-                    Temp << date_p << " " << newPriority << " " << text_p << endl;
+                    ChangeTaskText(taskVector, date_p, priority_p, text_p, new_string);
+                    Cache << date_p << " " << priority_p << " " << new_string << endl;
                 }
                 if (TypeString == 3) {
-                    DeleteTask(node_vector, date_p, priority_p, text_p);
+                    int newPriority = stoi(new_string);
+                    ChangeTaskPriority(taskVector, date_p, priority_p, text_p, newPriority);
+                    Cache << date_p << " " << newPriority << " " << text_p << endl;
                 }
+                if (TypeString == 4) {
+                    DeleteTask(taskVector, date_p, priority_p, text_p);
+                }
+
             } else {
-                Temp << date << " " << priority << " " << text << endl;
+                Cache << date << " " << priority << " " << text << endl;
+                if (TypeString == 0) {
+                    SetTaskForDate(taskVector, date, priority, text);
+                }
             }
-            i = 0; //обнуляем счётчик символов для новой строки
+            charcount = 0;
             date.clear();
             prior.clear();
             text.clear();
         }
     }
-    Task.close(); //Закрываем файл
-    Temp.close(); //Закрываем файл
 
-    Temp.open("temp.txt", ios::in);  //открыли для чтения  файл
-    Task.open("task.txt", ios::out); // окрываем файл для записи
+    Task.close();
+    Cache.close();
 
-    while ((ch = Temp.get()) != EOF) { //пока файл не кончился
-        if (char(ch) != '\n') {        //пока не конец строки
-            if (i < 10) {              //первые 10 символов добавляются в дату
-                date = date + char(ch);
-                i++;
+    Cache.open("cache.txt", ios::in);
+    Task.open("task.txt", ios::out);
+
+    while ((readchar = Cache.get()) != EOF) {
+        if (char(readchar) != '\n') {
+            if (charcount < 10) {
+                date = date + char(readchar);
+                charcount++;
             } else {
-                if (i < 13) {
-                    if (char(ch) != ' ') {
-                        prior = prior + char(ch);
-                        priority = stoi(prior); //преобразование в инт
+                if (charcount < 13) {
+                    if (char(readchar) != ' ') {
+                        prior = prior + char(readchar);
+                        priority = stoi(prior);
                     }
-                    i++;
+                    charcount++;
                 } else {
-                    text = text + char(ch); //оставшиеся символы в текст
+                    text = text + char(readchar);
                 }
             }
         } else {
             Task << date << " " << priority << " " << text << endl;
-            i = 0; //обнуляем счётчик символов для новой строки
+            charcount = 0;
             date.clear();
             prior.clear();
             text.clear();
         }
     }
 
-    Task.close(); //Закрываем файл
-    Temp.close(); //Закрываем файл
+    Task.close();
+    Cache.close();
 }
 
-void ChangeDateInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, string newDate)
+void UpdateTask(vector<Task>& taskVector)
 {
     int TypeString = 0;
-    ChangeStringInFile(node_vector, date_p, priority_p, text_p, newDate, TypeString);
+    ChangeStringInFile(taskVector, "", 0, "", "", TypeString);
 }
-void ChangeTextInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, string newText)
+
+void ChangeDateInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string newDate)
 {
     int TypeString = 1;
-    ChangeStringInFile(node_vector, date_p, priority_p, text_p, newText, TypeString);
+    ChangeStringInFile(taskVector, date_p, priority_p, text_p, newDate, TypeString);
 }
-void ChangePriorityInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p, int newPriority)
+void ChangeTextInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string newText)
 {
     int TypeString = 2;
-    string prior = to_string(newPriority); //преобразование в стринг
-    ChangeStringInFile(node_vector, date_p, priority_p, text_p, prior, TypeString);
+    ChangeStringInFile(taskVector, date_p, priority_p, text_p, newText, TypeString);
 }
-void DeleteTaskInFile(vector<Node>& node_vector, string date_p, int priority_p, string text_p)
+void ChangePriorityInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, int newPriority)
 {
     int TypeString = 3;
-    ChangeStringInFile(node_vector, date_p, priority_p, text_p, "", TypeString);
+    string prior = to_string(newPriority);
+    ChangeStringInFile(taskVector, date_p, priority_p, text_p, prior, TypeString);
+}
+void DeleteTaskInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p)
+{
+    int TypeString = 4;
+    ChangeStringInFile(taskVector, date_p, priority_p, text_p, "", TypeString);
 }
