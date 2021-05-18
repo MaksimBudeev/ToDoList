@@ -15,19 +15,11 @@ Task::Task()
 }
 
 bool Task::operator == (const Task &b){
-	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
-		return true;
-	}else{
-		return false;
-	}
+	return this->date == b.date && this->text == b.text && this->priority == b.priority;
 }
 
 bool Task::operator != (const Task &b){
-	if(this->date == b.date && this->text == b.text && this->priority == b.priority){
-		return false;
-	}else{
-		return true;
-	}
+	return !(this == &b);
 }	
 
 void SetTaskForDate(std::vector<Task>& taskVector, std::string newDate, int newPriority, std::string newText)
