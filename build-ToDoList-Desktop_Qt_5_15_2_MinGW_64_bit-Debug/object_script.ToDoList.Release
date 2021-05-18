@@ -1,4 +1,4 @@
-release/Node.o
+release/Task.o
 release/listitemwidget.o
 release/prioritysetwidget.o
 release/taskinputwindow.o

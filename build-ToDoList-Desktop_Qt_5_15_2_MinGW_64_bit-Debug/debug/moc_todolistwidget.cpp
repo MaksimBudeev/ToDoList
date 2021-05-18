@@ -40,13 +40,13 @@ QT_MOC_LITERAL(4, 36, 10), // "deleteTask"
 QT_MOC_LITERAL(5, 47, 12), // "compliteTask"
 QT_MOC_LITERAL(6, 60, 15), // "setTaskPriority"
 QT_MOC_LITERAL(7, 76, 9), // "addedTask"
-QT_MOC_LITERAL(8, 86, 4), // "Node"
+QT_MOC_LITERAL(8, 86, 4), // "Task"
 QT_MOC_LITERAL(9, 91, 11) // "editingTask"
 
     },
     "ToDoListWidget\0createTask\0\0editTask\0"
     "deleteTask\0compliteTask\0setTaskPriority\0"
-    "addedTask\0Node\0editingTask"
+    "addedTask\0Task\0editingTask"
 };
 #undef QT_MOC_LITERAL
 
@@ -95,8 +95,8 @@ void ToDoListWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 2: _t->deleteTask(); break;
         case 3: _t->compliteTask(); break;
         case 4: _t->setTaskPriority((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 5: _t->addedTask((*reinterpret_cast< const Node(*)>(_a[1]))); break;
-        case 6: _t->editingTask((*reinterpret_cast< const Node(*)>(_a[1]))); break;
+        case 5: _t->addedTask((*reinterpret_cast< const Task(*)>(_a[1]))); break;
+        case 6: _t->editingTask((*reinterpret_cast< const Task(*)>(_a[1]))); break;
         default: ;
         }
     }

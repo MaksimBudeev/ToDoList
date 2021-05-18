@@ -1,11 +1,12 @@
 #pragma once
+#include "Task.h"
 
 #include <QWidget>
 #include <QVector>
 
 class QListWidget;
 class TaskInputDialog;
-class Node;
+class Task;
 
 class ToDoListWidget: public QWidget
 {
@@ -21,11 +22,12 @@ public slots:
     void setTaskPriority(int);
 
 private slots:
-    void addedTask(const Node&);
-    void editingTask(const Node&);
+    void addedTask(const Task&);
+    void editingTask(const Task&);
 
 private:
     QListWidget* tasksListWidget;
     TaskInputDialog* inputDialog;
+    QVector<Task> tasksStorage;
 };
 

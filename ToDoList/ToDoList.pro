@@ -9,7 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ../src/Node.cpp \
+    ../src/Task.cpp \
     ../src/listitemwidget.cpp \
     ../src/prioritysetwidget.cpp \
     ../src/taskinputwindow.cpp \
@@ -19,7 +19,7 @@ SOURCES += \
     mymainwindow.cpp
 
 HEADERS += \
-    ../src/Node.h \
+    ../src/Task.h \
     ../src/listitemwidget.h \
     ../src/prioritysetwidget.h \
     ../src/taskinputwindow.h \

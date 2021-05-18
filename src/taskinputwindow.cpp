@@ -1,5 +1,5 @@
 #include "taskinputwindow.h"
-#include "Node.h"
+#include "Task.h"
 
 #include <QLabel>
 #include <QLineEdit>
@@ -44,7 +44,7 @@ void TaskInputDialog::sendTaskData()
     QString taskText = taskLineEdit->text();
     QString taskDate = dateLineEdit->text();
     QString taskPriority = priorityComboBox->currentText();
-    Node newTask(taskDate.toStdString(), taskText.toStdString(), taskPriority.toInt());
+    Task newTask(taskDate.toStdString(), taskText.toStdString(), taskPriority.toInt());
     emit taskInfoSended(newTask);
     taskLineEdit->clear();
     dateLineEdit->clear();
@@ -53,7 +53,7 @@ void TaskInputDialog::sendTaskData()
     close();
 }
 
-void TaskInputDialog::setTaskData(const Node& taskInfo)
+void TaskInputDialog::setTaskData(const Task& taskInfo)
 {
    taskLineEdit->setText(QString::fromStdString(taskInfo.GetText()));
    dateLineEdit->setText(QString::fromStdString(taskInfo.GetDate()));

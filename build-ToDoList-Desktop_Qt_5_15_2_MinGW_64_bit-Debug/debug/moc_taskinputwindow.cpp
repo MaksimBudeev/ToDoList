@@ -35,11 +35,11 @@ static const qt_meta_stringdata_TaskInputDialog_t qt_meta_stringdata_TaskInputDi
 QT_MOC_LITERAL(0, 0, 15), // "TaskInputDialog"
 QT_MOC_LITERAL(1, 16, 14), // "taskInfoSended"
 QT_MOC_LITERAL(2, 31, 0), // ""
-QT_MOC_LITERAL(3, 32, 4), // "Node"
+QT_MOC_LITERAL(3, 32, 4), // "Task"
 QT_MOC_LITERAL(4, 37, 12) // "sendTaskData"
 
     },
-    "TaskInputDialog\0taskInfoSended\0\0Node\0"
+    "TaskInputDialog\0taskInfoSended\0\0Task\0"
     "sendTaskData"
 };
 #undef QT_MOC_LITERAL
@@ -78,14 +78,14 @@ void TaskInputDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         auto *_t = static_cast<TaskInputDialog *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->taskInfoSended((*reinterpret_cast< const Node(*)>(_a[1]))); break;
+        case 0: _t->taskInfoSended((*reinterpret_cast< const Task(*)>(_a[1]))); break;
         case 1: _t->sendTaskData(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (TaskInputDialog::*)(const Node & );
+            using _t = void (TaskInputDialog::*)(const Task & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TaskInputDialog::taskInfoSended)) {
                 *result = 0;
                 return;
@@ -135,7 +135,7 @@ int TaskInputDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void TaskInputDialog::taskInfoSended(const Node & _t1)
+void TaskInputDialog::taskInfoSended(const Task & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

@@ -1,4 +1,4 @@
-debug/Node.o
+debug/Task.o
 debug/listitemwidget.o
 debug/prioritysetwidget.o
 debug/taskinputwindow.o
