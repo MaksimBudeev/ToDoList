@@ -12,7 +12,8 @@ enum TaskRoles
 {
     TaskText = Qt::UserRole + 1,
     TaskDate = Qt::UserRole + 2,
-    TaskPriority = Qt::UserRole + 3
+    TaskPriority = Qt::UserRole + 3,
+    TaskStatus = Qt::UserRole + 4
 };
 
 ToDoListWidget::ToDoListWidget(QWidget *parent)
@@ -46,8 +47,6 @@ void ToDoListWidget::editTask()
     QString taskDate = tasksListWidget->currentItem()->data(TaskDate).toString();
     int taskPriority = tasksListWidget->currentItem()->data(TaskPriority).toInt();
     Task editableTask(taskDate.toStdString(), taskText.toStdString(), taskPriority);
-    int taskIndex = tasksStorage.indexOf(editableTask);
-    qDebug() << "AAAAA: " << taskIndex;
 
     inputDialog->setTaskData(editableTask);
     qDebug() << "Edit task";
@@ -60,31 +59,55 @@ void ToDoListWidget::editingTask(const Task& node)
     QString taskText = QString::fromStdString(node.GetText());
     QString dateText = QString::fromStdString(node.GetDate());
     int priority = node.GetPriority();
+
     auto taskItem = tasksListWidget->currentItem();
     taskItem->setData(TaskText, taskText);
     taskItem->setData(TaskDate, dateText);
     taskItem->setData(TaskPriority, priority);
+
     tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
     tasksListWidget->setItemWidget(taskItem, new ListItemWidget(taskText, dateText, tasksListWidget));
 }
 
 void ToDoListWidget::compliteTask()
 {
+    if (tasksListWidget->currentItem() == nullptr || tasksListWidget->currentItem()->data(TaskStatus) != true)
+    {
+        return;
+    }
+
     qDebug() << "complite task";
     tasksListWidget->currentItem()->setBackgroundColor(QColor(0, 250, 0));
 
     auto taskItem = tasksListWidget->currentItem();
+    taskItem->setData(TaskStatus, true);
     QVariant task[3] = {taskItem->data(TaskText), taskItem->data(TaskDate), taskItem->data(TaskPriority)};
     QString taskText = task[0].toString();
     QString taskDate = task[1].toString();
     int taskPriority = task[2].toInt();
     Task complitedTask(taskDate.toStdString(), taskText.toStdString(), taskPriority);
 
-    tasksStorage.indexOf(complitedTask);
+    if (tasksStorage.indexOf(complitedTask, 0) != -1)
+    {
+        tasksStorage.remove(tasksStorage.indexOf(complitedTask));
+    }
 }
 
 void ToDoListWidget::deleteTask()
 {
+    if (tasksListWidget->currentItem() == nullptr)
+    {
+        return;
+    }
+
+    auto taskItem = tasksListWidget->currentItem();
+    taskItem->setData(TaskStatus, true);
+    QVariant task[3] = {taskItem->data(TaskText), taskItem->data(TaskDate), taskItem->data(TaskPriority)};
+    QString taskText = task[0].toString();
+    QString taskDate = task[1].toString();
+    int taskPriority = task[2].toInt();
+    Task deletedTask(taskDate.toStdString(), taskText.toStdString(), taskPriority);
+
     tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
     delete tasksListWidget->takeItem(tasksListWidget->currentRow());
     qDebug() << "Delete task";
@@ -104,11 +127,15 @@ void ToDoListWidget::addedTask(const Task& newTask)
     tasksListWidget->addItem(taskItem);
     QString taskText = QString::fromStdString(newTask.GetText());
     QString dateText = QString::fromStdString(newTask.GetDate());
+
     taskItem->setData(TaskText, taskText);
     taskItem->setData(TaskDate, dateText);
     taskItem->setData(TaskPriority, newTask.GetPriority());
+    taskItem->setData(TaskStatus, false);
+
     ListItemWidget* listItemWidget = new ListItemWidget(taskText, dateText, tasksListWidget);
     taskItem->setSizeHint(listItemWidget->sizeHint());
     tasksListWidget->setItemWidget(taskItem, listItemWidget);
+
     tasksStorage.push_back(newTask);
 }
