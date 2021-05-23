@@ -1,15 +1,26 @@
 #pragma once
-#include "Task.h"
 #include <fstream>
 #include <iostream>
 #include <iterator>
 #include <string>
 #include <vector>
+#include "Task.h"
 
-void UpdateTask(vector<Task>& taskVector);
-void SetTaskInFile(vector<Task>& taskVector, string date, int priority, string text);
-void ChangePriorityInFile(vector<Task>& taskVector, string date, int priority, string text, int newPriority);
-void ChangeStringInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string new_string, int TypeString);
-void ChangeDateInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string newDate);
-void ChangeTextInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string newText);
-void DeleteTaskInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p);
+void writeInVector(std::vector<Task>& taskVector);
+void setTaskInFile(std::vector<Task>& taskVector, std::string date, int priority, std::string text);
+
+void changePriorityInFile(std::vector<Task>& taskVector, std::string date, int priority, 
+std::string text, int newPriority);
+
+void changeStringInFile(std::vector<Task>& taskVector, std::string date_p, int priority_p, 
+std::string text_p, std::string newString, int typeString);
+
+void changeDateInFile(std::vector<Task>& taskVector, std::string date, int priority, 
+std::string text, std::string newDate);
+
+void changeTextInFile(std::vector<Task>& taskVector, std::string date, int priority, 
+std::string text, std::string newText);
+
+void deleteTaskInFile(std::vector<Task>& taskVector, std::string date, int priority, 
+std::string text);
+
