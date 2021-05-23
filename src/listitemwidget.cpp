@@ -7,7 +7,6 @@
 
 ListItemWidget::ListItemWidget(QString text, QString date, QWidget* parent) : QWidget(parent)
 {
-
         QTextEdit * taskTextEdit = new QTextEdit(text, this);
         taskTextEdit->setReadOnly(true);
         QLabel * dateLabel = new QLabel(date, this);
