@@ -1,139 +1,133 @@
 #include "DataInput.h"
 #include "Task.h"
 
-void SetTaskInFile(vector<Task>& taskVector, string date, int priority, string text)
+void setTaskInFile(vector<Task>& taskVector, string date, int priority, string text)
 {
-    fstream Task;
-    Task.open("task.txt", ios::app);
-
-    Task << date << " " << priority << " " << text << endl;
-    SetTaskForDate(taskVector, date, priority, text);
-    cout << "Заметка добавлена" << endl;
-    Task.close();
+    fstream storage("storage.txt", ios::app);
+        storage << date << " " << priority << " " << text << endl;
+    setTaskForDate(taskVector, date, priority, text);
+    storage.close();
 }
 
-void ChangeStringInFile(vector<Task>& taskVector, string date_p, 
-int priority_p, string text_p, string new_string, int TypeString)
+void changeStringInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string newString, int typeString)
 {
-    int readchar = 0;
-    int charcount = 0;
+    int readChar = 0;
+    int charCount = 0;
     string date;
     string prior;
     string text;
     int priority;
-    fstream Cache;
-    fstream Task;
 
-    Task.open("task.txt", ios::in);
-    Cache.open("cache.txt", ios::out);
+    fstream storage("storage.txt", ios::in);
+    fstream cache("cache.txt", ios::out);          
 
-    while ((readchar = Task.get()) != EOF) {
-        if (char(readchar) != '\n') {
-            if (charcount < 10) {
-                date = date + char(readchar);
-                charcount++;
+    while ((readChar = storage.get()) != EOF) {
+        if (char(readChar) != '\n') {
+            if (charCount < 10) {
+                date = date + char(readChar);
+                charCount++;
             } else {
-                if (charcount < 13) {
-                    if (char(readchar) != ' ') {
-                        prior = prior + char(readchar);
+                if (charCount < 13) {
+                    if (char(readChar) != ' ') {
+                        prior = prior + char(readChar);
                         priority = stoi(prior);
                     }
-                    charcount++;
+                    charCount++;
                 } else {
-                    text = text + char(readchar);
+                    text = text + char(readChar);
                 }
             }
         } else {
             if ((date == date_p) && (priority == priority_p) && (text == text_p)) {
-                if (TypeString == 1) {
-                    ChangeTaskDate(taskVector, date_p, priority_p, text_p, new_string);
-                    Cache << new_string << " " << priority_p << " " << text_p << endl;
+                if (typeString == 1) {
+                    changeTaskDate(taskVector, date_p, priority_p, text_p, newString);
+                    cache << newString << " " << priority_p << " " << text_p << endl;
                 }
-                if (TypeString == 2) {
-                    ChangeTaskText(taskVector, date_p, priority_p, text_p, new_string);
-                    Cache << date_p << " " << priority_p << " " << new_string << endl;
+                if (typeString == 2) {
+                    changeTaskText(taskVector, date_p, priority_p, text_p, newString);
+                    cache << date_p << " " << priority_p << " " << newString << endl;
                 }
-                if (TypeString == 3) {
-                    int newPriority = stoi(new_string);
-                    ChangeTaskPriority(taskVector, date_p, priority_p, text_p, newPriority);
-                    Cache << date_p << " " << newPriority << " " << text_p << endl;
+                if (typeString == 3) {
+                    int newPriority = stoi(newString);
+                    changeTaskPriority(taskVector, date_p, priority_p, text_p, newPriority);
+                    cache << date_p << " " << newPriority << " " << text_p << endl;
                 }
-                if (TypeString == 4) {
-                    DeleteTask(taskVector, date_p, priority_p, text_p);
+                if (typeString == 4) {
+                    deleteTask(taskVector, date_p, priority_p, text_p);
                 }
 
             } else {
-                Cache << date << " " << priority << " " << text << endl;
-                if (TypeString == 0) {
-                    SetTaskForDate(taskVector, date, priority, text);
+               cache << date << " " << priority << " " << text << endl;
+                if (typeString == 0) {
+                    setTaskForDate(taskVector, date, priority, text);
                 }
             }
-            charcount = 0;
+            charCount = 0;
             date.clear();
             prior.clear();
             text.clear();
         }
     }
 
-    Task.close();
-    Cache.close();
+    storage.close();
+    cache.close();
 
-    Cache.open("cache.txt", ios::in);
-    Task.open("task.txt", ios::out);
+    cache.open("cache.txt", ios::in);
+    storage.open("storage.txt", ios::out);
 
-    while ((readchar = Cache.get()) != EOF) {
-        if (char(readchar) != '\n') {
-            if (charcount < 10) {
-                date = date + char(readchar);
-                charcount++;
+    while ((readChar = cache.get()) != EOF) {
+        if (char(readChar) != '\n') {
+            if (charCount < 10) {
+                date = date + char(readChar);
+                charCount++;
             } else {
-                if (charcount < 13) {
-                    if (char(readchar) != ' ') {
-                        prior = prior + char(readchar);
+                if (charCount < 13) {
+                    if (char(readChar) != ' ') {
+                        prior = prior + char(readChar);
                         priority = stoi(prior);
                     }
-                    charcount++;
+                    charCount++;
                 } else {
-                    text = text + char(readchar);
+                    text = text + char(readChar);
                 }
             }
         } else {
-            Task << date << " " << priority << " " << text << endl;
-            charcount = 0;
+            storage << date << " " << priority << " " << text << endl;
+            charCount = 0;
             date.clear();
             prior.clear();
             text.clear();
         }
     }
 
-    Task.close();
-    Cache.close();
+    storage.close();
+    cache.close(); 
 }
 
-void UpdateTask(vector<Task>& taskVector)
+void writeInVector(vector<Task>& taskVector)
 {
-    int TypeString = 0;
-    ChangeStringInFile(taskVector, "", 0, "", "", TypeString);
+    int typeString = 0;
+    changeStringInFile(taskVector, "", 0, "", "", typeString);
 }
 
-void ChangeDateInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string newDate)
+void changeDateInFile(vector<Task>& taskVector, string date, int priority, string text, string newDate)
 {
-    int TypeString = 1;
-    ChangeStringInFile(taskVector, date_p, priority_p, text_p, newDate, TypeString);
+    int typeString = 1;
+    changeStringInFile(taskVector, date, priority, text, newDate, typeString);
 }
-void ChangeTextInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, string newText)
+void changeTextInFile(vector<Task>& taskVector, string date, int priority, string text, string newText)
 {
-    int TypeString = 2;
-    ChangeStringInFile(taskVector, date_p, priority_p, text_p, newText, TypeString);
+    int typeString = 2;
+    changeStringInFile(taskVector, date, priority, text, newText, typeString);
 }
-void ChangePriorityInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p, int newPriority)
+void changePriorityInFile(vector<Task>& taskVector, string date, int priority, string text, int newPriority)
 {
-    int TypeString = 3;
+    int typeString = 3;
     string prior = to_string(newPriority);
-    ChangeStringInFile(taskVector, date_p, priority_p, text_p, prior, TypeString);
+    changeStringInFile(taskVector, date, priority, text, prior, typeString);
 }
-void DeleteTaskInFile(vector<Task>& taskVector, string date_p, int priority_p, string text_p)
+void deleteTaskInFile(vector<Task>& taskVector, string date, int priority, string text)
 {
-    int TypeString = 4;
-    ChangeStringInFile(taskVector, date_p, priority_p, text_p, "", TypeString);
+    int typeString = 4;
+    changeStringInFile(taskVector, date, priority, text, "", typeString);
 }
