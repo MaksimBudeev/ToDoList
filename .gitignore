@@ -3,7 +3,7 @@
 *.save
 *.a
 *.d
-
+*.exe
 
 bin/*
 !.keep
