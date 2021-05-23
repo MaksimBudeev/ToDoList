@@ -41,7 +41,7 @@ void ToDoListWidget::editTask()
     }
 
     inputDialog = new TaskInputDialog(this);
-    connect(inputDialog, SIGNAL(taskInfoSended(const Node&)), this, SLOT(editingTask(const Node&)));
+    connect(inputDialog, SIGNAL(taskInfoSended(const Task&)), this, SLOT(editingTask(const Task&)));
 
     QString taskText = tasksListWidget->currentItem()->data(TaskText).toString();
     QString taskDate = tasksListWidget->currentItem()->data(TaskDate).toString();
@@ -56,11 +56,19 @@ void ToDoListWidget::editTask()
 
 void ToDoListWidget::editingTask(const Task& node)
 {
-    QString taskText = QString::fromStdString(node.GetText());
-    QString dateText = QString::fromStdString(node.GetDate());
-    int priority = node.GetPriority();
+    QString taskText = QString::fromStdString(node.getText());
+    QString dateText = QString::fromStdString(node.getDate());
+    int priority = node.getPriority();
 
     auto taskItem = tasksListWidget->currentItem();
+
+    QVariant task[3] = {taskItem->data(TaskText), taskItem->data(TaskDate), taskItem->data(TaskPriority)};
+    QString oldTaskText = task[0].toString();
+    QString oldTaskDate = task[1].toString();
+    int oldTaskPriority = task[2].toInt();
+
+    Task editableTask(oldTaskDate.toStdString(), oldTaskText.toStdString(), oldTaskPriority);
+
     taskItem->setData(TaskText, taskText);
     taskItem->setData(TaskDate, dateText);
     taskItem->setData(TaskPriority, priority);
@@ -115,6 +123,18 @@ void ToDoListWidget::deleteTask()
 
 void ToDoListWidget::setTaskPriority(int priority)
 {
+    for (int i = 0; i < tasksListWidget->count(); i++)
+    {
+        auto item = tasksListWidget->item(i);
+        if (item->data(TaskPriority) != priority)
+        {
+            item->setHidden(true);
+        }
+        else
+        {
+            item->setHidden(false);
+        }
+    }
     qDebug() << "Set priority:" << priority;
 }
 
@@ -125,12 +145,12 @@ void ToDoListWidget::addedTask(const Task& newTask)
 
     QListWidgetItem* taskItem = new QListWidgetItem(tasksListWidget);
     tasksListWidget->addItem(taskItem);
-    QString taskText = QString::fromStdString(newTask.GetText());
-    QString dateText = QString::fromStdString(newTask.GetDate());
+    QString taskText = QString::fromStdString(newTask.getText());
+    QString dateText = QString::fromStdString(newTask.getDate());
 
     taskItem->setData(TaskText, taskText);
     taskItem->setData(TaskDate, dateText);
-    taskItem->setData(TaskPriority, newTask.GetPriority());
+    taskItem->setData(TaskPriority, newTask.getPriority());
     taskItem->setData(TaskStatus, false);
 
     ListItemWidget* listItemWidget = new ListItemWidget(taskText, dateText, tasksListWidget);
