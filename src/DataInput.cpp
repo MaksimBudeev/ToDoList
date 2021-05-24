@@ -6,7 +6,8 @@ void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation t
     //добавление новой задачи
     if (type == Operation::Add) {
         std::fstream storage("storage.txt", std::ios::app);
-        storage << taskVector[index].getDate() << " " << std::to_string(taskVector[index].getPriority()) << " " << taskVector[index].getText() << std::endl;
+        storage << taskVector[index].getDate() << " " << std::to_string(taskVector[index].getPriority()) << " "
+                << taskVector[index].getText() << std::endl;
         storage.close();
         return;
     }
@@ -21,9 +22,9 @@ void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation t
 
     //изменение
     if (type == Operation::Edit) {
-    for (const auto& str : taskVector) 
-    std::cout << str.getText() << std::endl;
-        cache[index] = taskVector[index].getDate() + " " + std::to_string(taskVector[index].getPriority()) + " " + taskVector[index].getText();
+        for (const auto& str : taskVector)
+            cache[index] = taskVector[index].getDate() + " " + std::to_string(taskVector[index].getPriority()) + " "
+                    + taskVector[index].getText();
     }
     //удаление
     if (type == Operation::Delete) {
@@ -31,9 +32,9 @@ void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation t
     }
     //заполнение вектора
     if (type == Operation::Read) {
-        std::stringstream ss;
         std::string date, priority, text;
         for (const auto& taskStr : cache) {
+            std::stringstream ss;
             ss.str(taskStr);
             ss >> date >> priority;
             ss.get();
@@ -42,13 +43,10 @@ void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation t
         }
         return;
     }
-    
-    storage.open("storage.txt", std::ios::out);
-            if (storage.is_open())
-        {
-            std::copy(cache.begin(), cache.end(), 
-                std::ostream_iterator<std::string>(storage, "\n"));
-            storage.close();
-        }
-}
 
+    storage.open("storage.txt", std::ios::out);
+    if (storage.is_open()) {
+        std::copy(cache.begin(), cache.end(), std::ostream_iterator<std::string>(storage, "\n"));
+        storage.close();
+    }
+}
