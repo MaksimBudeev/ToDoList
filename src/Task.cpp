@@ -50,7 +50,7 @@ void getTaskForDate(std::vector<Task> taskVector, std::string date)
 }
 
 
-int deleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text)
+int deleteTaskFromVector(std::vector<Task>& vector, std::string date, int priority, std::string text)
 {
     for (int i = 0; i < vector.size(); i++) {
         if ((vector[i].getDate() == date) && (vector[i].getText() == text) && (vector[i].getPriority() == priority)) {

@@ -31,7 +31,7 @@ public:
 };
 
 int findIndex(std::vector<Task>& taskVector, std::string date, int priority, std::string text);
-int deleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text);
+int deleteTaskFromVector(std::vector<Task>& vector, std::string date, int priority, std::string text);
 // добавление заметки:
 void setTaskForDate(std::vector<Task>& taskVector, std::string newDate, int newPriority, std::string newText);
 // вывод заметок на данную дату в консоль(временно):
