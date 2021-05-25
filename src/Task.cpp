@@ -49,10 +49,10 @@ void getTaskForDate(std::vector<Task> taskVector, std::string date)
     helpVector.clear();
 }
 
-void DeleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text)
+void deleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text)
 {
     for (int i = 0; i < vector.size(); i++) {
-        if ((vector[i].GetDate() == date) && (vector[i].GetText() == text) && (vector[i].GetPriority() == priority)) {
+        if ((vector[i].getDate() == date) && (vector[i].getText() == text) && (vector[i].getPriority() == priority)) {
             vector.erase(vector.begin() + i);
             break;
         }
@@ -92,24 +92,30 @@ int findIndex(std::vector<Task>& taskVector, std::string date, int priority, std
             return i;
         }
     }
-    return 1;
+    return INT_MAX;
 }
 
 void changeTaskDate(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newDate)
 {
     int number = findIndex(taskVector, date, priority, text);
-    taskVector[number].setDate(newDate);
+    if(number != INT_MAX){
+    	taskVector[number].setDate(newDate);
+    }
 }
 
 void changeTaskText(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newText)
 {
     int number = findIndex(taskVector, date, priority, text);
-    taskVector[number].setText(newText);
+    if(number != INT_MAX){
+    	taskVector[number].setText(newText);
+    }
 }
 
 void changeTaskPriority(std::vector<Task>& taskVector, std::string date, int priority, std::string text, int newPriority)
 {
     int number = findIndex(taskVector, date, priority, text);
-    taskVector[number].setPriority(newPriority);
+    if(number != INT_MAX){
+    	taskVector[number].setPriority(newPriority);
+    }
 }
 
