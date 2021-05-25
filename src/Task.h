@@ -30,14 +30,14 @@ public:
     bool operator != (const Task & b);
 };
 
-void deleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text);
+int deleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text);
 // добавление заметки:
 void setTaskForDate(std::vector<Task>& taskVector, std::string newDate, int newPriority, std::string newText);
 // вывод заметок на данную дату в консоль(временно):
 void getTaskForDate(std::vector<Task> taskVector, std::string date);
 // изменение даты:
-void changeTaskDate(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newDate);
+int changeTaskDate(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newDate);
 // изменение текста заметки:
-void changeTaskText(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newText);
+int changeTaskText(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newText);
 // изменение приоритета заметки:
-void changeTaskPriority(std::vector<Task>& taskVector, std::string date, int priority, std::string text, int newPriority);
+int changeTaskPriority(std::vector<Task>& taskVector, std::string date, int priority, std::string text, int newPriority);

@@ -49,14 +49,15 @@ void getTaskForDate(std::vector<Task> taskVector, std::string date)
     helpVector.clear();
 }
 
-void deleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text)
+int deleteTask(std::vector<Task>& vector, std::string date, int priority, std::string text)
 {
     for (int i = 0; i < vector.size(); i++) {
         if ((vector[i].getDate() == date) && (vector[i].getText() == text) && (vector[i].getPriority() == priority)) {
             vector.erase(vector.begin() + i);
-            break;
+            return 0;
         }
     }
+    return 1;
 }
 
 void Task::setDate(std::string newDate)
@@ -95,27 +96,33 @@ int findIndex(std::vector<Task>& taskVector, std::string date, int priority, std
     return INT_MAX;
 }
 
-void changeTaskDate(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newDate)
+int changeTaskDate(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newDate)
 {
     int number = findIndex(taskVector, date, priority, text);
     if(number != INT_MAX){
     	taskVector[number].setDate(newDate);
+    	return 0;
     }
+    return 1;
 }
 
-void changeTaskText(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newText)
+int changeTaskText(std::vector<Task>& taskVector, std::string date, int priority, std::string text, std::string newText)
 {
     int number = findIndex(taskVector, date, priority, text);
     if(number != INT_MAX){
     	taskVector[number].setText(newText);
+    	return 0;
     }
+    return 1;
 }
 
-void changeTaskPriority(std::vector<Task>& taskVector, std::string date, int priority, std::string text, int newPriority)
+int changeTaskPriority(std::vector<Task>& taskVector, std::string date, int priority, std::string text, int newPriority)
 {
     int number = findIndex(taskVector, date, priority, text);
     if(number != INT_MAX){
     	taskVector[number].setPriority(newPriority);
+    	return 0;
     }
+    return 1;
 }
 
