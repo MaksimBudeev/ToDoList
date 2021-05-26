@@ -2,7 +2,7 @@
 #include "Task.h"
 
 #include <QWidget>
-#include <QVector>
+#include <vector>
 
 class QListWidget;
 class TaskInputDialog;
@@ -28,6 +28,6 @@ private slots:
 private:
     QListWidget* tasksListWidget;
     TaskInputDialog* inputDialog;
-    QVector<Task> tasksStorage;
+    std::vector<Task> tasksStorage;
 };
 

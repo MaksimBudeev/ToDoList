@@ -7,6 +7,6 @@
 #include <string>
 #include <vector>
 
-enum class Operation { Read, Edit, Delete, Add };
+enum Operation { Read, Edit, Delete, Add };
 
 void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation type);
