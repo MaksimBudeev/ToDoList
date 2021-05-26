@@ -21,6 +21,11 @@ PrioritySetWidget::PrioritySetWidget(QWidget* parent)
         connect(priorityButton, SIGNAL(clicked()), this, SLOT(sendPriority()));
         vBox->addWidget(priorityButton);
     }
+
+    QPushButton* priorityButton = new QPushButton("Show all", this);
+    priorityMap.insert(priorityButton, 6);
+    connect(priorityButton, SIGNAL(clicked()), this, SLOT(sendPriority()));
+    vBox->addWidget(priorityButton);
 }
 
 void PrioritySetWidget::sendPriority()
