@@ -19,7 +19,7 @@ CTEST(findIndex, uncorrect_find)
     setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
     setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
-    int expect = 1;
+    int expect = 2147483647;
     int result = findIndex(task_vector, "21.21.2022", 4, "Поспать");
 
     ASSERT_EQUAL(expect, result);
@@ -104,7 +104,7 @@ CTEST(deleteTaskFromVector, correct_delete)
     setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
-    int result = deleteTaskFromVector(task_vector, "21.21.2021", 1, "Поспать");
+    int result = deleteTaskFromVector(task_vector, "21.21.2021", 5, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
@@ -116,7 +116,7 @@ CTEST(deleteTaskFromVector, uncorrect_delete)
     setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
-    int result = deleteTaskFromVector(task_vector, "21.21.2021", 5, "Поспать");
+    int result = deleteTaskFromVector(task_vector, "21.21.2021", 1, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
