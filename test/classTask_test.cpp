@@ -97,26 +97,26 @@ CTEST(changeTaskPriority, uncorrect_change)
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(deleteTask, correct_delete)
+CTEST(deleteTaskFromVector, correct_delete)
 {
     std::vector<Task> task_vector;
     setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
     setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
-    int result = deleteTask(task_vector, "21.21.2021", 1, "Поспать");
+    int result = deleteTaskFromVector(task_vector, "21.21.2021", 1, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(deleteTask, uncorrect_delete)
+CTEST(deleteTaskFromVector, uncorrect_delete)
 {
     std::vector<Task> task_vector;
     setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
     setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
-    int result = deleteTask(task_vector, "21.21.2021", 5, "Поспать");
+    int result = deleteTaskFromVector(task_vector, "21.21.2021", 5, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
