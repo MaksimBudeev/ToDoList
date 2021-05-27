@@ -4,8 +4,8 @@
 CTEST(findIndex, correct_find)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
     int result = findIndex(task_vector, "21.21.2021", 4, "Поспать");
@@ -16,8 +16,8 @@ CTEST(findIndex, correct_find)
 CTEST(findIndex, uncorrect_find)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
     int result = findIndex(task_vector, "21.21.2022", 4, "Поспать");
@@ -28,8 +28,8 @@ CTEST(findIndex, uncorrect_find)
 CTEST(changeTaskDate, correct_change)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
     int result = changeTaskDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007", "08.07.2005");
@@ -40,8 +40,8 @@ CTEST(changeTaskDate, correct_change)
 CTEST(changeTaskDate, uncorrect_change)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
     int result = changeTaskDate(task_vector, "07.07.2007", 4, "Вернуть мой 2007", "08.07.2007");
@@ -52,8 +52,8 @@ CTEST(changeTaskDate, uncorrect_change)
 CTEST(changeTaskText, correct_change)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
     int result = changeTaskText(task_vector, "21.21.2021", 5, "Поспать", "Поесть");
@@ -64,8 +64,8 @@ CTEST(changeTaskText, correct_change)
 CTEST(changeTaskText, uncorrect_change)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
     int result = changeTaskText(task_vector, "21.21.2021", 1, "Поспать", "Поесть");
@@ -76,8 +76,8 @@ CTEST(changeTaskText, uncorrect_change)
 CTEST(changeTaskPriority, correct_change)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
     int result = changeTaskPriority(task_vector, "21.21.2021", 5, "Поспать", 4);
@@ -88,8 +88,8 @@ CTEST(changeTaskPriority, correct_change)
 CTEST(changeTaskPriority, uncorrect_change)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
     int result = changeTaskPriority(task_vector, "21.21.2021", 1, "Поспать", 5);
@@ -100,8 +100,8 @@ CTEST(changeTaskPriority, uncorrect_change)
 CTEST(deleteTask, correct_delete)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
     int result = deleteTask(task_vector, "21.21.2021", 1, "Поспать");
@@ -112,8 +112,8 @@ CTEST(deleteTask, correct_delete)
 CTEST(deleteTask, uncorrect_delete)
 {
     std::vector<Task> task_vector;
-    setTaskForDate(node_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(node_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
     int result = deleteTask(task_vector, "21.21.2021", 5, "Поспать");
