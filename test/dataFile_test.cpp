@@ -37,7 +37,7 @@ CTEST(changeStringInFile, read_task_from_file)
 
     std::vector<Task> taskVector;
     changeStringInFile(taskVector, 0, operation::Read);
-   
+
     for (int i = 0; i < 2; i++) {
         strRes = strRes + "\n" + taskVector[i].getDate() + " " + std::to_string(taskVector[i].getPriority()) + " "
                 + taskVector[i].getText();
@@ -110,7 +110,7 @@ CTEST(changeStringInFile, delete_task_from_file)
     expect = strExp.c_str();
     result = strRes.c_str();
     ASSERT_STR(expect, result);
-    
+
     storage.open("storage.txt", std::ios::out);
     storage.close();
 }
