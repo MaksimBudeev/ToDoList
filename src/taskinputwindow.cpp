@@ -1,16 +1,15 @@
 #include "taskinputwindow.h"
 #include "Task.h"
 
+#include <QComboBox>
+#include <QDialogButtonBox>
+#include <QFormLayout>
 #include <QLabel>
 #include <QLineEdit>
-#include <QVBoxLayout>
-#include <QComboBox>
-#include <QFormLayout>
 #include <QStringList>
-#include <QDialogButtonBox>
+#include <QVBoxLayout>
 
-TaskInputDialog::TaskInputDialog(QWidget *parent)
-    : QDialog(parent)
+TaskInputDialog::TaskInputDialog(QWidget* parent) : QDialog(parent)
 {
     setFixedSize(300, 200);
 
@@ -19,7 +18,11 @@ TaskInputDialog::TaskInputDialog(QWidget *parent)
     priorityComboBox = new QComboBox(this);
 
     QStringList priorityList;
-    priorityList << "1" << "2" << "3" << "4" << "5";
+    priorityList << "1"
+                 << "2"
+                 << "3"
+                 << "4"
+                 << "5";
     priorityComboBox->addItems(priorityList);
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
@@ -55,7 +58,7 @@ void TaskInputDialog::sendTaskData()
 
 void TaskInputDialog::setTaskData(const Task& taskInfo)
 {
-   taskLineEdit->setText(QString::fromStdString(taskInfo.getText()));
-   dateLineEdit->setText(QString::fromStdString(taskInfo.getDate()));
-   priorityComboBox->setCurrentText(QString::number(taskInfo.getPriority()));
+    taskLineEdit->setText(QString::fromStdString(taskInfo.getText()));
+    dateLineEdit->setText(QString::fromStdString(taskInfo.getDate()));
+    priorityComboBox->setCurrentText(QString::number(taskInfo.getPriority()));
 }

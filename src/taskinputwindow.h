@@ -7,11 +7,10 @@ class QLineEdit;
 class QFormLayout;
 class Task;
 
-class TaskInputDialog: public QDialog
-{
+class TaskInputDialog : public QDialog {
     Q_OBJECT
 public:
-    TaskInputDialog(QWidget *parent = nullptr);
+    TaskInputDialog(QWidget* parent = nullptr);
     void setTaskData(const Task& taskInfo);
 
 signals:

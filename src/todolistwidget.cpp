@@ -1,35 +1,32 @@
 #include "TodoListWidget.h"
-#include "TaskInputWindow.h"
-#include "Task.h"
-#include "ListItemWidget.h"
 #include "DataInput.h"
+#include "ListItemWidget.h"
+#include "Task.h"
+#include "TaskInputWindow.h"
 
-#include <QVBoxLayout>
-#include <QListWidget>
 #include <QDebug>
+#include <QListWidget>
+#include <QVBoxLayout>
 #include <QVariant>
 #include <vector>
 
-enum TaskRoles
-{
+enum TaskRoles {
     TaskText = Qt::UserRole + 1,
     TaskDate = Qt::UserRole + 2,
     TaskPriority = Qt::UserRole + 3,
     TaskStatus = Qt::UserRole + 4
 };
 
-ToDoListWidget::ToDoListWidget(QWidget *parent)
-    : QWidget(parent)
+ToDoListWidget::ToDoListWidget(QWidget* parent) : QWidget(parent)
 {
-    QVBoxLayout *vBox = new QVBoxLayout(this);
+    QVBoxLayout* vBox = new QVBoxLayout(this);
     tasksListWidget = new QListWidget(this);
 
     vBox->addWidget(tasksListWidget);
 
     changeStringInFile(tasksStorage, 0, Read);
 
-    for (int i = 0; i < tasksStorage.size(); i++)
-    {
+    for (int i = 0; i < tasksStorage.size(); i++) {
         QListWidgetItem* taskItem = new QListWidgetItem(tasksListWidget);
         tasksListWidget->addItem(taskItem);
         QString taskText = QString::fromStdString(tasksStorage[i].getText());
@@ -56,8 +53,7 @@ void ToDoListWidget::createTask()
 
 void ToDoListWidget::editTask()
 {
-    if (!tasksListWidget->currentItem())
-    {
+    if (!tasksListWidget->currentItem()) {
         return;
     }
 
@@ -92,15 +88,9 @@ void ToDoListWidget::editingTask(const Task& node)
 
     int editableTaskIndex = findIndex(tasksStorage, oldTaskDate.toStdString(), oldTaskPriority, oldTaskText.toStdString());
 
-    changeTaskDate(tasksStorage,
-                   oldTaskDate.toStdString(), oldTaskPriority, oldTaskText.toStdString(),
-                   dateText.toStdString());
-    changeTaskText(tasksStorage,
-                   dateText.toStdString(), oldTaskPriority, oldTaskText.toStdString(),
-                   taskText.toStdString());
-    changeTaskPriority(tasksStorage,
-                       dateText.toStdString(), oldTaskPriority, taskText.toStdString(),
-                       priority);
+    changeTaskDate(tasksStorage, oldTaskDate.toStdString(), oldTaskPriority, oldTaskText.toStdString(), dateText.toStdString());
+    changeTaskText(tasksStorage, dateText.toStdString(), oldTaskPriority, oldTaskText.toStdString(), taskText.toStdString());
+    changeTaskPriority(tasksStorage, dateText.toStdString(), oldTaskPriority, taskText.toStdString(), priority);
 
     changeStringInFile(tasksStorage, editableTaskIndex, Edit);
 
@@ -114,8 +104,7 @@ void ToDoListWidget::editingTask(const Task& node)
 
 void ToDoListWidget::compliteTask()
 {
-    if (tasksListWidget->currentItem() == nullptr || tasksListWidget->currentItem()->data(TaskStatus) == true)
-    {
+    if (tasksListWidget->currentItem() == nullptr || tasksListWidget->currentItem()->data(TaskStatus) == true) {
         return;
     }
 
@@ -131,15 +120,12 @@ void ToDoListWidget::compliteTask()
     Task complitedTask(taskDate.toStdString(), taskText.toStdString(), taskPriority);
 
     deleteTaskFromVector(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString());
-    changeStringInFile(tasksStorage,
-                       findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()),
-                       Delete);
+    changeStringInFile(tasksStorage, findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()), Delete);
 }
 
 void ToDoListWidget::deleteTask()
 {
-    if (tasksListWidget->currentItem() == nullptr)
-    {
+    if (tasksListWidget->currentItem() == nullptr) {
         return;
     }
 
@@ -149,11 +135,9 @@ void ToDoListWidget::deleteTask()
     QString taskText = task[0].toString();
     QString taskDate = task[1].toString();
     int taskPriority = task[2].toInt();
-    if (tasksListWidget->currentItem()->data(TaskStatus) == true)
-    {
-        changeStringInFile(tasksStorage,
-                           findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()),
-                           Delete);
+    if (tasksListWidget->currentItem()->data(TaskStatus) == true) {
+        changeStringInFile(
+                tasksStorage, findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()), Delete);
         deleteTaskFromVector(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString());
     }
     tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
@@ -164,20 +148,15 @@ void ToDoListWidget::deleteTask()
 
 void ToDoListWidget::setTaskPriority(int priority)
 {
-    for (int i = 0; i < tasksListWidget->count(); i++)
-    {
+    for (int i = 0; i < tasksListWidget->count(); i++) {
         auto item = tasksListWidget->item(i);
-        if (item->data(TaskPriority) != priority)
-        {
+        if (item->data(TaskPriority) != priority) {
             item->setHidden(true);
-        }
-        else
-        {
+        } else {
             item->setHidden(false);
         }
 
-        if (priority == 6)
-        {
+        if (priority == 6) {
             item->setHidden(false);
         }
     }
