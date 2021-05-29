@@ -4,9 +4,7 @@
 #include <iostream>
 #include <iterator>
 #include <sstream>
-#include <string>
-#include <vector>
 
-enum Operation { Read, Edit, Delete, Add };
+enum operation { Read, Edit, Delete, Add };
 
-void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation type);
+void changeStringInFile(std::vector<Task>& taskVector, size_t index, operation type);

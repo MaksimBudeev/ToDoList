@@ -1,10 +1,10 @@
 #include "DataInput.h"
 #include "Task.h"
 
-void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation type)
+void changeStringInFile(std::vector<Task>& taskVector, size_t index, operation type)
 {
     //добавление новой задачи
-    if (type == Operation::Add) {
+    if (type == operation::Add) {
         std::fstream storage("storage.txt", std::ios::app);
         storage << taskVector[index].getDate() << " " << std::to_string(taskVector[index].getPriority()) << " "
                 << taskVector[index].getText() << std::endl;
@@ -21,17 +21,17 @@ void changeStringInFile(std::vector<Task>& taskVector, size_t index, Operation t
     storage.close();
 
     //изменение
-    if (type == Operation::Edit) {
+    if (type == operation::Edit) {
         for (const auto& str : taskVector)
             cache[index] = taskVector[index].getDate() + " " + std::to_string(taskVector[index].getPriority()) + " "
                     + taskVector[index].getText();
     }
     //удаление
-    if (type == Operation::Delete) {
+    if (type == operation::Delete) {
         cache.erase(cache.begin() + index);
     }
     //заполнение вектора
-    if (type == Operation::Read) {
+    if (type == operation::Read) {
         std::string date, priority, text;
         for (const auto& taskStr : cache) {
             std::stringstream ss;

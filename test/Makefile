@@ -11,4 +11,4 @@ SRC_EXT = cpp
 all: test
 	
 test: 
-	g++ -o worked *.cpp $(SRC_PATH)Task.cpp -I $(LIB_TEST_DIR) -I $(SRC_PATH)
+	g++ -o worked *.cpp $(SRC_PATH)Task.cpp $(SRC_PATH)DataInput.cpp -I $(LIB_TEST_DIR) -I $(SRC_PATH)
