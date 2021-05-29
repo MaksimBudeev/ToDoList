@@ -2,10 +2,8 @@
 
 #include <QWidget>
 
-class MyMainWindow: public QWidget
-{
+class MyMainWindow : public QWidget {
     Q_OBJECT
 public:
-    MyMainWindow(QWidget *parent = nullptr);
+    MyMainWindow(QWidget* parent = nullptr);
 };
-

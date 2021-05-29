@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-
 class Task {
 private:
     std::string date;
@@ -21,13 +20,13 @@ public:
     // Установить приоритет:
     void setPriority(int newPriority);
     // Вернуть значение даты:
-    std::string getDate()const;
+    std::string getDate() const;
     // Вернуть значение текста:
-    std::string getText()const;
+    std::string getText() const;
     // Вернуть значение приоритета:
-    int getPriority()const;
-    bool operator == (const Task & b);
-    bool operator != (const Task & b);
+    int getPriority() const;
+    bool operator==(const Task& b);
+    bool operator!=(const Task& b);
 };
 
 int findIndex(std::vector<Task>& taskVector, std::string date, int priority, std::string text);

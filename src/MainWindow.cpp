@@ -6,12 +6,11 @@
 
 #include <QHBoxLayout>
 
-MyMainWindow::MyMainWindow(QWidget *parent)
-    : QWidget(parent)
+MyMainWindow::MyMainWindow(QWidget* parent) : QWidget(parent)
 {
-    ControlWidget * controlWidget = new ControlWidget();
-    ToDoListWidget * taskList = new ToDoListWidget();
-    PrioritySetWidget * setPriority = new PrioritySetWidget();
+    ControlWidget* controlWidget = new ControlWidget();
+    ToDoListWidget* taskList = new ToDoListWidget();
+    PrioritySetWidget* setPriority = new PrioritySetWidget();
 
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(controlWidget);
