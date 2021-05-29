@@ -110,4 +110,7 @@ CTEST(changeStringInFile, delete_task_from_file)
     expect = strExp.c_str();
     result = strRes.c_str();
     ASSERT_STR(expect, result);
+    
+    storage.open("storage.txt", std::ios::out);
+    storage.close();
 }
