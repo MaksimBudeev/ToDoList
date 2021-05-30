@@ -1,122 +1,122 @@
 #include "../src/Task.h"
 #include "../thirdparty/ctest.h"
 
-CTEST(findIndex, correct_find)
+CTEST(findIndex, correctFind)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
-    int result = findIndex(task_vector, "21.21.2021", 4, "Поспать");
+    int result = findIndex(taskVector, "21.21.2021", 4, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(findIndex, uncorrect_find)
+CTEST(findIndex, uncorrectFind)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 2147483647;
-    int result = findIndex(task_vector, "21.21.2022", 4, "Поспать");
+    int result = findIndex(taskVector, "21.21.2022", 4, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(changeTaskDate, correct_change)
+CTEST(changeTaskDate, correctChange)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
-    int result = changeTaskDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007", "08.07.2005");
+    int result = changeTaskDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007", "08.07.2005");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(changeTaskDate, uncorrect_change)
+CTEST(changeTaskDate, uncorrectChange)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 4, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 4, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
-    int result = changeTaskDate(task_vector, "07.07.2007", 4, "Вернуть мой 2007", "08.07.2007");
+    int result = changeTaskDate(taskVector, "07.07.2007", 4, "Вернуть мой 2007", "08.07.2007");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(changeTaskText, correct_change)
+CTEST(changeTaskText, correctChange)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
-    int result = changeTaskText(task_vector, "21.21.2021", 5, "Поспать", "Поесть");
+    int result = changeTaskText(taskVector, "21.21.2021", 5, "Поспать", "Поесть");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(changeTaskText, uncorrect_change)
+CTEST(changeTaskText, uncorrectChange)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
-    int result = changeTaskText(task_vector, "21.21.2021", 1, "Поспать", "Поесть");
+    int result = changeTaskText(taskVector, "21.21.2021", 1, "Поспать", "Поесть");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(changeTaskPriority, correct_change)
+CTEST(changeTaskPriority, correctChange)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
-    int result = changeTaskPriority(task_vector, "21.21.2021", 5, "Поспать", 4);
+    int result = changeTaskPriority(taskVector, "21.21.2021", 5, "Поспать", 4);
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(changeTaskPriority, uncorrect_change)
+CTEST(changeTaskPriority, uncorrectChange)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
-    int result = changeTaskPriority(task_vector, "21.21.2021", 1, "Поспать", 5);
+    int result = changeTaskPriority(taskVector, "21.21.2021", 1, "Поспать", 5);
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(deleteTaskFromVector, correct_delete)
+CTEST(deleteTaskFromVector, correctDelete)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 0;
-    int result = deleteTaskFromVector(task_vector, "21.21.2021", 5, "Поспать");
+    int result = deleteTaskFromVector(taskVector, "21.21.2021", 5, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
 
-CTEST(deleteTaskFromVector, uncorrect_delete)
+CTEST(deleteTaskFromVector, uncorrectDelete)
 {
-    std::vector<Task> task_vector;
-    setTaskForDate(task_vector, "21.21.2021", 5, "Поспать");
-    setTaskForDate(task_vector, "07.07.2007", 3, "Вернуть мой 2007");
+    std::vector<Task> taskVector;
+    setTaskForDate(taskVector, "21.21.2021", 5, "Поспать");
+    setTaskForDate(taskVector, "07.07.2007", 3, "Вернуть мой 2007");
 
     int expect = 1;
-    int result = deleteTaskFromVector(task_vector, "21.21.2021", 1, "Поспать");
+    int result = deleteTaskFromVector(taskVector, "21.21.2021", 1, "Поспать");
 
     ASSERT_EQUAL(expect, result);
 }
