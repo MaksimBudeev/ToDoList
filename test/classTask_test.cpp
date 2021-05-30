@@ -1,5 +1,5 @@
-#include "Task.h"
-#include "ctest.h"
+#include "../src/Task.h"
+#include "../thirdparty/ctest.h"
 
 CTEST(findIndex, correct_find)
 {

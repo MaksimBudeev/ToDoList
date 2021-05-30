@@ -1,6 +1,6 @@
-#include "DataInput.h"
-#include "Task.h"
-#include "ctest.h"
+#include "../src/DataInput.h"
+#include "../src/Task.h"
+#include "../thirdparty/ctest.h"
 
 CTEST(changeStringInFile, add_task_to_file)
 {
