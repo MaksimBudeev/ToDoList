@@ -10,7 +10,7 @@ file(GLOB TODOLIST_SRC "src/*.cpp" "src/*.h")
 file(GLOB TODOLIST_TEST "test/*.cpp" "src/DataInput.h" "src/DataInput.cpp" "src/Task.h" "src/Task.cpp" "thirdparty/ctest.h")
 
 add_executable(todolist ${TODOLIST_SRC})
-#add_executable(tests ${TODOLIST_TEST})
+add_executable(tests ${TODOLIST_TEST})
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
