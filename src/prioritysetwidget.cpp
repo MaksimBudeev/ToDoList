@@ -1,4 +1,4 @@
-#include "prioritysetwidget.h"
+#include "PrioritySetWidget.h"
 
 #include <QLabel>
 #include <QPushButton>

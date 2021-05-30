@@ -1,4 +1,4 @@
-#include "taskinputwindow.h"
+#include "TaskInputWindow.h"
 #include "Task.h"
 
 #include <QComboBox>

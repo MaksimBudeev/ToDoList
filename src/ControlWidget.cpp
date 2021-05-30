@@ -1,4 +1,4 @@
-#include "controlwidget.h"
+#include "ControlWidget.h"
 
 #include <QPushButton>
 #include <QVBoxLayout>
