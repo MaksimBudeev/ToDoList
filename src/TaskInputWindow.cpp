@@ -15,6 +15,7 @@ TaskInputDialog::TaskInputDialog(QWidget* parent) : QDialog(parent)
 
     taskLineEdit = new QLineEdit(this);
     dateLineEdit = new QLineEdit(this);
+    dateLineEdit->setInputMask("00.00.0000;_");
     priorityComboBox = new QComboBox(this);
 
     QStringList priorityList;

@@ -53,7 +53,8 @@ void ToDoListWidget::createTask()
 
 void ToDoListWidget::editTask()
 {
-    if (!tasksListWidget->currentItem()) {
+    if (!tasksListWidget->currentItem() || tasksListWidget->currentItem()->data(TaskStatus) == true)
+    {
         return;
     }
 
@@ -66,6 +67,7 @@ void ToDoListWidget::editTask()
     Task editableTask(taskDate.toStdString(), taskText.toStdString(), taskPriority);
 
     inputDialog->setTaskData(editableTask);
+
     qDebug() << "Edit task";
 
     inputDialog->open();
@@ -119,8 +121,8 @@ void ToDoListWidget::compliteTask()
     int taskPriority = task[2].toInt();
     Task complitedTask(taskDate.toStdString(), taskText.toStdString(), taskPriority);
 
-    deleteTaskFromVector(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString());
     changeStringInFile(tasksStorage, findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()), Delete);
+    deleteTaskFromVector(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString());
 }
 
 void ToDoListWidget::deleteTask()
@@ -130,16 +132,24 @@ void ToDoListWidget::deleteTask()
     }
 
     auto taskItem = tasksListWidget->currentItem();
+
+    if (taskItem->data(TaskStatus) == true)
+    {
+        tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
+        delete tasksListWidget->takeItem(tasksListWidget->currentRow());
+        return;
+    }
+
     taskItem->setData(TaskStatus, true);
     QVariant task[3] = {taskItem->data(TaskText), taskItem->data(TaskDate), taskItem->data(TaskPriority)};
     QString taskText = task[0].toString();
     QString taskDate = task[1].toString();
     int taskPriority = task[2].toInt();
-    if (tasksListWidget->currentItem()->data(TaskStatus) == true) {
-        changeStringInFile(
-                tasksStorage, findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()), Delete);
-        deleteTaskFromVector(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString());
-    }
+
+    changeStringInFile(
+            tasksStorage, findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()), Delete);
+    deleteTaskFromVector(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString());
+
     tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
     delete tasksListWidget->takeItem(tasksListWidget->currentRow());
 
