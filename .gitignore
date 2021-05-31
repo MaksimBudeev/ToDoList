@@ -4,6 +4,4 @@
 *.a
 *.d
 *.exe
-
-build/
-!.keep
+*.user
