@@ -2,7 +2,7 @@
 #include "../src/Task.h"
 #include "../thirdparty/ctest.h"
 
-CTEST(changeStringInFile, add_task_to_file)
+CTEST(changeStringInFile, addTaskToFile)
 {
     std::fstream storage;
     storage.open("storage.txt", std::ios::out);
@@ -29,7 +29,7 @@ CTEST(changeStringInFile, add_task_to_file)
     ASSERT_STR(expect, result);
 }
 
-CTEST(changeStringInFile, read_task_from_file)
+CTEST(changeStringInFile, readTaskFromFile)
 {
     const char *expect, *result;
     std::string strRes;
@@ -48,7 +48,7 @@ CTEST(changeStringInFile, read_task_from_file)
     ASSERT_STR(expect, result);
 }
 
-CTEST(changeStringInFile, edit_task_in_file)
+CTEST(changeStringInFile, editTaskInFile)
 {
     const char *expect, *result;
     std::string strRes;
@@ -70,7 +70,7 @@ CTEST(changeStringInFile, edit_task_in_file)
     ASSERT_STR(expect, result);
 }
 
-CTEST(changeStringInFile, replace_task_in_file)
+CTEST(changeStringInFile, replaceTaskInFile)
 {
     const char *expect, *result;
     std::string strRes;
@@ -92,7 +92,7 @@ CTEST(changeStringInFile, replace_task_in_file)
     ASSERT_STR(expect, result);
 }
 
-CTEST(changeStringInFile, delete_task_from_file)
+CTEST(changeStringInFile, deleteTaskFromFile)
 {
     const char *expect, *result;
     std::string strRes;
