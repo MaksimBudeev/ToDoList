@@ -53,8 +53,7 @@ void ToDoListWidget::createTask()
 
 void ToDoListWidget::editTask()
 {
-    if (!tasksListWidget->currentItem() || tasksListWidget->currentItem()->data(TaskStatus) == true)
-    {
+    if (!tasksListWidget->currentItem() || tasksListWidget->currentItem()->data(TaskStatus) == true) {
         return;
     }
 
@@ -133,8 +132,7 @@ void ToDoListWidget::deleteTask()
 
     auto taskItem = tasksListWidget->currentItem();
 
-    if (taskItem->data(TaskStatus) == true)
-    {
+    if (taskItem->data(TaskStatus) == true) {
         tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
         delete tasksListWidget->takeItem(tasksListWidget->currentRow());
         return;
@@ -146,8 +144,7 @@ void ToDoListWidget::deleteTask()
     QString taskDate = task[1].toString();
     int taskPriority = task[2].toInt();
 
-    changeStringInFile(
-            tasksStorage, findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()), Delete);
+    changeStringInFile(tasksStorage, findIndex(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString()), Delete);
     deleteTaskFromVector(tasksStorage, taskDate.toStdString(), taskPriority, taskText.toStdString());
 
     tasksListWidget->removeItemWidget(tasksListWidget->currentItem());
