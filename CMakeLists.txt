@@ -5,6 +5,7 @@ set(CMAKE_AUTOMOC ON)
 
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ../bin)
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ../obj_arc)
+set(CMAKE_CPP_COMPILER g++)
 
 file(GLOB TODOLIST_SRC "src/*.cpp" "src/*.h")
 file(GLOB TODOLIST_TEST "test/*.cpp" "src/DataInput.h" "src/DataInput.cpp" "src/Task.h" "src/Task.cpp" "thirdparty/ctest.h")
