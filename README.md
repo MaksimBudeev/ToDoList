@@ -1,11 +1,11 @@
 # Todolist
 
 ## Установка и запуск на Linux
-    ./git clone https://github.com/trpo2021/cw-iv-023_todo-list  
+    git clone https://github.com/trpo2021/cw-iv-023_todo-list  
     cd cw-iv-023_todo-list/  
     cmake .
     make
-    cd bin/
+    cd ../bin
 ## Команда запуска
     ./todolist
 ***
