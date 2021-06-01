@@ -3,7 +3,8 @@
 ## Установка и запуск на Linux
     git clone https://github.com/trpo2021/cw-iv-023_todo-list  
     cd cw-iv-023_todo-list/  
-    cmake .
+    cmake -B makefiles_dir
+    cd makefiles_dir
     make
     cd ../bin
 ## Команда запуска
